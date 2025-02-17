@@ -40,7 +40,7 @@ export const navItems: NavItem[] = [
   {
     title: 'Attività',
     url: '/dashboard/tasks',
-    icon: 'kanban',
+    icon: 'task',
     shortcut: ['k', 'k'],
     isActive: false,
     items: [] // No child items

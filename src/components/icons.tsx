@@ -43,7 +43,7 @@ export const Icons = {
   close: X,
   product: LucideShoppingBag,
   spinner: Loader2,
-  kanban: ListCheck,
+  task: ListCheck,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   trash: Trash,

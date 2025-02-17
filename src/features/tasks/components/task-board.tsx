@@ -40,7 +40,7 @@ const defaultCols = [
 
 export type ColumnId = (typeof defaultCols)[number]['id'];
 
-export function KanbanBoard() {
+export function TaskBoard() {
   // const [columns, setColumns] = useState<Column[]>(defaultCols);
   const columns = useTaskStore((state) => state.columns);
   const setColumns = useTaskStore((state) => state.setCols);

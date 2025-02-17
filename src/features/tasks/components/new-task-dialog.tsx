@@ -1,4 +1,5 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -10,35 +11,36 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 import { useTaskStore } from '../utils/store';
 
-export default function NewSectionDialog() {
-  const addCol = useTaskStore((state) => state.addCol);
+export default function NewTaskDialog() {
+  const addTask = useTaskStore((state) => state.addTask);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const { title } = Object.fromEntries(formData);
+    const { title, description } = Object.fromEntries(formData);
 
-    if (typeof title !== 'string') return;
-    addCol(title);
+    if (typeof title !== 'string' || typeof description !== 'string') return;
+    addTask(title, description);
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant='secondary' size='lg' className='w-full'>
-          ＋ Add New Section
+        <Button variant='secondary' size='sm'>
+          ＋ Nuova attività
         </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>Add New Section</DialogTitle>
+          <DialogTitle>Nuova attività</DialogTitle>
           <DialogDescription>
-            What section you want to add today?
+            Inserisci i dettagli della nuova attività
           </DialogDescription>
         </DialogHeader>
         <form
@@ -50,7 +52,15 @@ export default function NewSectionDialog() {
             <Input
               id='title'
               name='title'
-              placeholder='Section title...'
+              placeholder='Titolo attività...'
+              className='col-span-4'
+            />
+          </div>
+          <div className='grid grid-cols-4 items-center gap-4'>
+            <Textarea
+              id='description'
+              name='description'
+              placeholder='descrizione...'
               className='col-span-4'
             />
           </div>
@@ -58,7 +68,7 @@ export default function NewSectionDialog() {
         <DialogFooter>
           <DialogTrigger asChild>
             <Button type='submit' size='sm' form='todo-form'>
-              Add Section
+              Add Todo
             </Button>
           </DialogTrigger>
         </DialogFooter>

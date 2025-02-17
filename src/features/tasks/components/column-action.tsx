@@ -73,7 +73,7 @@ export function ColumnActions({
               }, 500);
             }}
           >
-            Rename
+            Rinomina
           </DropdownMenuItem>
           <DropdownMenuSeparator />
 
@@ -81,7 +81,7 @@ export function ColumnActions({
             onSelect={() => setShowDeleteDialog(true)}
             className='text-red-600'
           >
-            Delete Section
+            Elimina sezione
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -89,14 +89,14 @@ export function ColumnActions({
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              Are you sure want to delete column?
+              Sei sicuro di voler eliminare la colonna?
             </AlertDialogTitle>
             <AlertDialogDescription>
-              NOTE: All tasks related to this category will also be deleted.
+              NOTE: tutte le attività della colonna verranno eliminate.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>Annulla</AlertDialogCancel>
             <Button
               variant='destructive'
               onClick={() => {
@@ -108,7 +108,7 @@ export function ColumnActions({
                 toast('This column has been deleted.');
               }}
             >
-              Delete
+              Elimina
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

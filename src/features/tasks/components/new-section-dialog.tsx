@@ -1,5 +1,4 @@
 'use client';
-
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,36 +10,35 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 
 import { useTaskStore } from '../utils/store';
 
-export default function NewTaskDialog() {
-  const addTask = useTaskStore((state) => state.addTask);
+export default function NewSectionDialog() {
+  const addCol = useTaskStore((state) => state.addCol);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const { title, description } = Object.fromEntries(formData);
+    const { title } = Object.fromEntries(formData);
 
-    if (typeof title !== 'string' || typeof description !== 'string') return;
-    addTask(title, description);
+    if (typeof title !== 'string') return;
+    addCol(title);
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant='secondary' size='sm'>
-          ＋ Add New Todo
+        <Button variant='secondary' size='lg' className='w-full'>
+          ＋ Nuova sezione
         </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>Add New Todo</DialogTitle>
+          <DialogTitle>Nuova sezione</DialogTitle>
           <DialogDescription>
-            What do you want to get done today?
+            Come vorresti chiamare la nuova sezione?
           </DialogDescription>
         </DialogHeader>
         <form
@@ -52,15 +50,7 @@ export default function NewTaskDialog() {
             <Input
               id='title'
               name='title'
-              placeholder='Todo title...'
-              className='col-span-4'
-            />
-          </div>
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <Textarea
-              id='description'
-              name='description'
-              placeholder='Description...'
+              placeholder='Titolo...'
               className='col-span-4'
             />
           </div>
@@ -68,7 +58,7 @@ export default function NewTaskDialog() {
         <DialogFooter>
           <DialogTrigger asChild>
             <Button type='submit' size='sm' form='todo-form'>
-              Add Todo
+              Crea sezione
             </Button>
           </DialogTrigger>
         </DialogFooter>

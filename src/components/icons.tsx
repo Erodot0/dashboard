@@ -4,15 +4,16 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
-  CircuitBoardIcon,
   Command,
   CreditCard,
   File,
   FileText,
   HelpCircle,
+  IdCard,
   Image,
   Laptop,
   LayoutDashboardIcon,
+  ListCheck,
   Loader2,
   LogIn,
   LucideIcon,
@@ -28,8 +29,8 @@ import {
   Twitter,
   User,
   UserCircle2Icon,
+  UserCog,
   UserPen,
-  UserX2Icon,
   X
 } from 'lucide-react';
 
@@ -42,11 +43,11 @@ export const Icons = {
   close: X,
   product: LucideShoppingBag,
   spinner: Loader2,
-  kanban: CircuitBoardIcon,
+  kanban: ListCheck,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   trash: Trash,
-  employee: UserX2Icon,
+  employee: UserCog,
   post: FileText,
   page: File,
   userPen: UserPen,
@@ -64,6 +65,7 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  subscription: IdCard,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden='true'

@@ -86,7 +86,7 @@ export function DataTableFilterBox({
                     variant='secondary'
                     className='rounded-sm px-1 font-normal'
                   >
-                    {selectedValuesSet.size} selected
+                    {selectedValuesSet.size} Selezionato
                   </Badge>
                 ) : (
                   Array.from(selectedValuesSet).map((value) => (
@@ -109,7 +109,7 @@ export function DataTableFilterBox({
         <Command>
           <CommandInput placeholder={title} />
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandEmpty>Nessun risultato trovato.</CommandEmpty>
             <CommandGroup>
               {options.map((option) => (
                 <CommandItem
@@ -144,7 +144,7 @@ export function DataTableFilterBox({
                     onSelect={resetFilter}
                     className='justify-center text-center'
                   >
-                    Clear filters
+                    Rimuovi filtri
                   </CommandItem>
                 </CommandGroup>
               </>

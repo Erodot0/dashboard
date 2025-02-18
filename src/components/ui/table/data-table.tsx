@@ -135,7 +135,7 @@ export function DataTable<TData, TValue>({
                       colSpan={columns.length}
                       className='h-24 text-center'
                     >
-                      No results.
+                      Nessun risultato.
                     </TableCell>
                   </TableRow>
                 )}
@@ -151,22 +151,21 @@ export function DataTable<TData, TValue>({
           <div className='flex-1 text-sm text-muted-foreground'>
             {totalItems > 0 ? (
               <>
-                Showing{' '}
-                {paginationState.pageIndex * paginationState.pageSize + 1} to{' '}
+                Da {paginationState.pageIndex * paginationState.pageSize + 1} a{' '}
                 {Math.min(
                   (paginationState.pageIndex + 1) * paginationState.pageSize,
                   totalItems
                 )}{' '}
-                of {totalItems} entries
+                su {totalItems} righe
               </>
             ) : (
-              'No entries found'
+              'Nessun risultato.'
             )}
           </div>
           <div className='flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8'>
             <div className='flex items-center space-x-2'>
               <p className='whitespace-nowrap text-sm font-medium'>
-                Rows per page
+                Righe per pagina
               </p>
               <Select
                 value={`${paginationState.pageSize}`}
@@ -192,10 +191,10 @@ export function DataTable<TData, TValue>({
           <div className='flex w-[150px] items-center justify-center text-sm font-medium'>
             {totalItems > 0 ? (
               <>
-                Page {paginationState.pageIndex + 1} of {table.getPageCount()}
+                Pagina {paginationState.pageIndex + 1} di {table.getPageCount()}
               </>
             ) : (
-              'No pages'
+              'Nessuna pagina'
             )}
           </div>
           <div className='flex items-center space-x-2'>

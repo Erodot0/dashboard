@@ -1,6 +1,6 @@
 import { NavItem } from 'types';
 
-export type Product = {
+export type Customer = {
   photo_url: string;
   name: string;
   description: string;
@@ -23,7 +23,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: 'Clienti',
-    url: '/dashboard/clients',
+    url: '/dashboard/customers',
     icon: 'user',
     shortcut: ['p', 'p'],
     isActive: false,

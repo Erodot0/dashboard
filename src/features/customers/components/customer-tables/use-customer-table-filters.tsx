@@ -12,9 +12,9 @@ export const CATEGORY_OPTIONS = [
   { value: 'Groceries', label: 'Groceries' },
   { value: 'Books', label: 'Books' },
   { value: 'Jewelry', label: 'Jewelry' },
-  { value: 'Beauty Products', label: 'Beauty Products' }
+  { value: 'Beauty Customers', label: 'Beauty Customers' }
 ];
-export function useProductTableFilters() {
+export function useCustomerTableFilters() {
   const [searchQuery, setSearchQuery] = useQueryState(
     'q',
     searchParams.q

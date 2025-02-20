@@ -20,7 +20,7 @@ import {
   SelectValue
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Product } from '@/constants/mock-api';
+import { Customer } from '@/constants/mock-api';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -46,7 +46,7 @@ const formSchema = z.object({
       '.jpg, .jpeg, .png and .webp files are accepted.'
     ),
   name: z.string().min(2, {
-    message: 'Product name must be at least 2 characters.'
+    message: 'Customer name must be at least 2 characters.'
   }),
   category: z.string(),
   price: z.number(),
@@ -55,11 +55,11 @@ const formSchema = z.object({
   })
 });
 
-export default function ProductForm({
+export default function CustomerForm({
   initialData,
   pageTitle
 }: {
-  initialData: Product | null;
+  initialData: Customer | null;
   pageTitle: string;
 }) {
   const defaultValues = {
@@ -120,9 +120,9 @@ export default function ProductForm({
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Product Name</FormLabel>
+                    <FormLabel>Customer Name</FormLabel>
                     <FormControl>
-                      <Input placeholder='Enter product name' {...field} />
+                      <Input placeholder='Enter customer name' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -144,7 +144,7 @@ export default function ProductForm({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value='beauty'>Beauty Products</SelectItem>
+                        <SelectItem value='beauty'>Beauty Customers</SelectItem>
                         <SelectItem value='electronics'>Electronics</SelectItem>
                         <SelectItem value='clothing'>Clothing</SelectItem>
                         <SelectItem value='home'>Home & Garden</SelectItem>
@@ -184,7 +184,7 @@ export default function ProductForm({
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder='Enter product description'
+                      placeholder='Enter customer description'
                       className='resize-none'
                       {...field}
                     />
@@ -193,7 +193,7 @@ export default function ProductForm({
                 </FormItem>
               )}
             />
-            <Button type='submit'>Add Product</Button>
+            <Button type='submit'>Add Customer</Button>
           </form>
         </Form>
       </CardContent>

@@ -8,8 +8,8 @@ import { matchSorter } from 'match-sorter'; // For filtering
 export const delay = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
-// Define the shape of Product data
-export type Product = {
+// Define the shape of Customer data
+export type Customer = {
   photo_url: string;
   name: string;
   description: string;
@@ -20,14 +20,14 @@ export type Product = {
   updated_at: string;
 };
 
-// Mock product data store
-export const fakeProducts = {
-  records: [] as Product[], // Holds the list of product objects
+// Mock customer data store
+export const fakeCustomers = {
+  records: [] as Customer[], // Holds the list of customer objects
 
   // Initialize with sample data
   initialize() {
-    const sampleProducts: Product[] = [];
-    function generateRandomProductData(id: number): Product {
+    const sampleCustomers: Customer[] = [];
+    function generateRandomCustomerData(id: number): Customer {
       const categories = [
         'Electronics',
         'Furniture',
@@ -36,18 +36,18 @@ export const fakeProducts = {
         'Groceries',
         'Books',
         'Jewelry',
-        'Beauty Products'
+        'Beauty Customers'
       ];
 
       return {
         id,
-        name: faker.commerce.productName(),
-        description: faker.commerce.productDescription(),
+        name: 'John Doe', //faker.commerce.customerName(),
+        description: 'heloo', //faker.commerce.customerDescription(),
         created_at: faker.date
           .between({ from: '2022-01-01', to: '2023-12-31' })
           .toISOString(),
         price: parseFloat(faker.commerce.price({ min: 5, max: 500, dec: 2 })),
-        photo_url: `https://api.slingacademy.com/public/sample-products/${id}.png`,
+        photo_url: `https://api.slingacademy.com/public/sample-customers/${id}.png`,
         category: faker.helpers.arrayElement(categories),
         updated_at: faker.date.recent().toISOString()
       };
@@ -55,13 +55,13 @@ export const fakeProducts = {
 
     // Generate remaining records
     for (let i = 1; i <= 20; i++) {
-      sampleProducts.push(generateRandomProductData(i));
+      sampleCustomers.push(generateRandomCustomerData(i));
     }
 
-    this.records = sampleProducts;
+    this.records = sampleCustomers;
   },
 
-  // Get all products with optional category filtering and search
+  // Get all customers with optional category filtering and search
   async getAll({
     categories = [],
     search
@@ -69,27 +69,27 @@ export const fakeProducts = {
     categories?: string[];
     search?: string;
   }) {
-    let products = [...this.records];
+    let customers = [...this.records];
 
-    // Filter products based on selected categories
+    // Filter customers based on selected categories
     if (categories.length > 0) {
-      products = products.filter((product) =>
-        categories.includes(product.category)
+      customers = customers.filter((customer) =>
+        categories.includes(customer.category)
       );
     }
 
     // Search functionality across multiple fields
     if (search) {
-      products = matchSorter(products, search, {
+      customers = matchSorter(customers, search, {
         keys: ['name', 'description', 'category']
       });
     }
 
-    return products;
+    return customers;
   },
 
   // Get paginated results with optional category filtering and search
-  async getProducts({
+  async getCustomers({
     page = 1,
     limit = 10,
     categories,
@@ -102,15 +102,15 @@ export const fakeProducts = {
   }) {
     await delay(1000);
     const categoriesArray = categories ? categories.split('.') : [];
-    const allProducts = await this.getAll({
+    const allCustomers = await this.getAll({
       categories: categoriesArray,
       search
     });
-    const totalProducts = allProducts.length;
+    const totalCustomers = allCustomers.length;
 
     // Pagination logic
     const offset = (page - 1) * limit;
-    const paginatedProducts = allProducts.slice(offset, offset + limit);
+    const paginatedCustomers = allCustomers.slice(offset, offset + limit);
 
     // Mock current time
     const currentTime = new Date().toISOString();
@@ -120,24 +120,24 @@ export const fakeProducts = {
       success: true,
       time: currentTime,
       message: 'Sample data for testing and learning purposes',
-      total_products: totalProducts,
+      total_customers: totalCustomers,
       offset,
       limit,
-      products: paginatedProducts
+      customers: paginatedCustomers
     };
   },
 
-  // Get a specific product by its ID
-  async getProductById(id: number) {
+  // Get a specific customer by its ID
+  async getCustomerById(id: number) {
     await delay(1000); // Simulate a delay
 
-    // Find the product by its ID
-    const product = this.records.find((product) => product.id === id);
+    // Find the customer by its ID
+    const customer = this.records.find((customer) => customer.id === id);
 
-    if (!product) {
+    if (!customer) {
       return {
         success: false,
-        message: `Product with ID ${id} not found`
+        message: `Customer with ID ${id} not found`
       };
     }
 
@@ -147,11 +147,11 @@ export const fakeProducts = {
     return {
       success: true,
       time: currentTime,
-      message: `Product with ID ${id} found`,
-      product
+      message: `Customer with ID ${id} found`,
+      customer
     };
   }
 };
 
-// Initialize sample products
-fakeProducts.initialize();
+// Initialize sample customers
+fakeCustomers.initialize();

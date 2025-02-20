@@ -45,11 +45,11 @@ const ProfileCreateForm: React.FC<ProfileFormType> = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [imgLoading, setImgLoading] = useState(false);
-  const title = initialData ? 'Edit product' : 'Create Your Profile';
+  const title = initialData ? 'Edit customer' : 'Create Your Profile';
   const description = initialData
-    ? 'Edit a product.'
+    ? 'Edit a customer.'
     : 'To create your resume, we first need some basic information about you.';
-  const toastMessage = initialData ? 'Product updated.' : 'Product created.';
+  const toastMessage = initialData ? 'Customer updated.' : 'Customer created.';
   const action = initialData ? 'Save changes' : 'Create';
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
@@ -89,13 +89,13 @@ const ProfileCreateForm: React.FC<ProfileFormType> = ({
     try {
       setLoading(true);
       if (initialData) {
-        // await axios.post(`/api/products/edit-product/${initialData._id}`, data);
+        // await axios.post(`/api/customers/edit-customers/${initialData._id}`, data);
       } else {
-        // const res = await axios.post(`/api/products/create-product`, data);
-        // console.log("product", res);
+        // const res = await axios.post(`/api/customers/create-customer`, data);
+        // console.log("customer", res);
       }
       router.refresh();
-      router.push(`/dashboard/products`);
+      router.push(`/dashboard/customers`);
     } catch (error: any) {
     } finally {
       setLoading(false);
@@ -105,9 +105,9 @@ const ProfileCreateForm: React.FC<ProfileFormType> = ({
   const onDelete = async () => {
     try {
       setLoading(true);
-      //   await axios.delete(`/api/${params.storeId}/products/${params.productId}`);
+      //   await axios.delete(`/api/${params.storeId}/customers/${params.customerId}`);
       router.refresh();
-      router.push(`/${params.storeId}/products`);
+      router.push(`/${params.storeId}/customers`);
     } catch (error: any) {
     } finally {
       setLoading(false);

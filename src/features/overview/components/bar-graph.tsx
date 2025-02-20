@@ -143,10 +143,10 @@ export function BarGraph() {
     []
   );
 
-  const [isClient, setIsClient] = React.useState(false);
+  const [isCustomer, setIsCustomer] = React.useState(false);
 
   React.useEffect(() => {
-    setIsClient(true);
+    setIsCustomer(true);
   }, []);
 
   React.useEffect(() => {
@@ -155,7 +155,7 @@ export function BarGraph() {
     }
   }, [activeChart]);
 
-  if (!isClient) {
+  if (!isCustomer) {
     return null;
   }
 

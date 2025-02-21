@@ -18,6 +18,7 @@ export const navItems: NavItem[] = [
     url: '/dashboard/overview',
     icon: 'dashboard',
     isActive: false,
+    requireAdmin: false,
     shortcut: ['d', 'd'],
     items: [] // Empty array as there are no child items for Dashboard
   },
@@ -27,6 +28,7 @@ export const navItems: NavItem[] = [
     icon: 'user',
     shortcut: ['p', 'p'],
     isActive: false,
+    requireAdmin: false,
     items: [] // No child items
   },
   {
@@ -35,6 +37,7 @@ export const navItems: NavItem[] = [
     icon: 'subscription',
     shortcut: ['s', 's'],
     isActive: false,
+    requireAdmin: false,
     items: [] // No child items
   },
   {
@@ -43,6 +46,7 @@ export const navItems: NavItem[] = [
     icon: 'task',
     shortcut: ['k', 'k'],
     isActive: false,
+    requireAdmin: false,
     items: [] // No child items
   },
   {
@@ -50,6 +54,7 @@ export const navItems: NavItem[] = [
     url: '/dashboard/users', // Placeholder as there is no direct link for the parent
     icon: 'employee',
     isActive: false,
+    requireAdmin: true,
     items: [] // No child items
   }
 ];

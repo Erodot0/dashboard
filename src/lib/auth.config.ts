@@ -29,7 +29,8 @@ const authConfig = {
               id: result.record.id as string,
               name: result.record.name as string,
               email: result.record.email as string,
-              token: result.token
+              token: result.token,
+              isAdmin: result.record.isAdmin as boolean
             };
           }
           return null;
@@ -49,6 +50,7 @@ const authConfig = {
         token.id = user.id;
         token.email = user.email;
         token.token = user.token;
+        token.isAdmin = user.isAdmin;
       }
       return token;
     },
@@ -57,6 +59,7 @@ const authConfig = {
         session.user.id = token.id as string;
         session.user.email = token.email as string;
         session.user.token = token.token as string;
+        session.user.isAdmin = token.isAdmin as boolean;
       }
       return session;
     }

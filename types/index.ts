@@ -10,6 +10,7 @@ export interface NavItem {
   label?: string;
   description?: string;
   isActive?: boolean;
+  requireAdmin?: boolean;
   items?: NavItem[];
 }
 

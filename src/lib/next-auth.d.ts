@@ -6,6 +6,7 @@ declare module 'next-auth' {
     name?: string;
     email?: string;
     token?: string; // Add the `token` property
+    isAdmin?: boolean;
   }
 
   interface Session {

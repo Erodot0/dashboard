@@ -29,13 +29,18 @@ export default function UserAuthForm() {
   const callbackUrl = searchParams.get('callbackUrl');
   const [loading, startTransition] = useTransition();
   const form = useForm<UserFormValue>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      password: ''
+    }
   });
 
   const onSubmit = async (data: UserFormValue) => {
-    startTransition(() => {
-      signIn('credentials', {
+    startTransition(async () => {
+      await signIn('credentials', {
         email: data.email,
+        password: data.password,
         callbackUrl: callbackUrl ?? '/dashboard'
       });
       toast.success('Signed In Successfully!');

@@ -1,6 +1,6 @@
 import { NextAuthConfig } from 'next-auth';
-import CredentialProvider from 'next-auth/providers/credentials';
 import GithubProvider from 'next-auth/providers/github';
+import { db } from './pocketbase';
 
 const authConfig = {
   providers: [
@@ -8,35 +8,58 @@ const authConfig = {
       clientId: process.env.GITHUB_ID ?? '',
       clientSecret: process.env.GITHUB_SECRET ?? ''
     }),
-    CredentialProvider({
+    {
+      id: 'credentials',
+      name: 'Credentials',
+      type: 'credentials',
       credentials: {
-        email: {
-          type: 'email'
-        },
-        password: {
-          type: 'password'
-        }
+        email: { type: 'email' },
+        password: { type: 'password' }
       },
-      async authorize(credentials, req) {
-        const user = {
-          id: '1',
-          name: 'John',
-          email: credentials?.email as string
-        };
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null;
+      async authorize(credentials) {
+        try {
+          const { email, password } = credentials as {
+            email: string;
+            password: string;
+          };
+          const result = await db.authenticate(email, password);
 
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+          if (result?.token) {
+            return {
+              id: result.record.id as string,
+              name: result.record.name as string,
+              email: result.record.email as string,
+              token: result.token
+            };
+          }
+          return null;
+        } catch (error) {
+          console.error('Authentication error:', error);
+          return null;
         }
       }
-    })
+    }
   ],
   pages: {
-    signIn: '/' //sigin page
+    signIn: '/' // sign-in page
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.token = user.token;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id as string;
+        session.user.email = token.email as string;
+        session.user.token = token.token as string;
+      }
+      return session;
+    }
   }
 } satisfies NextAuthConfig;
 
